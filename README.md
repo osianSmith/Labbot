@@ -28,23 +28,23 @@ For users with roll `Lab Demonstrator`,  they can:
 It is recommended as you **as the admin**  also change your role to be included in the `Lab Demonstrator` group. `Lab Demonstrator` role is **case senstive!**.
 
 
-##FAQ
-####What information is saved?
+## FAQ
+####  What information is saved?
 I am not saving any infomation. There are *some* print statments that ai can see in a command line, however this is more for debugging. 
 
-####Does this offer any moderation facilities or swearing facilities?
+####  Does this offer any moderation facilities or swearing facilities?
 No. If you want to use a bot for moderation, I would recommend [Dyno.gg](https://dyno.gg).  
 
-####Is this free?
+####  Is this free?
 Yes
 
-####What can I do with your code?
+#### What can I do with your code?
 Look at the licence.txt 
 
-####I have a feature idea/found a bug!
+#### I have a feature idea/found a bug!
 Great - open a feature request on this github!
 
-####Who made Labbot?
+#### Who made Labbot?
 Labbot is made by Osian Smith.
 
 Labbot copyright Osian Smith 2021 All Rights Resrved.
