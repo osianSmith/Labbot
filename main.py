@@ -5,10 +5,14 @@ import discord
 import os
 from discord.utils import get
 from dotenv import load_dotenv
+import time
+
 
 load_dotenv() #loads enviroment 
 
 print("Script passed Python init... Starting up and connecting to bot")
+
+startUpTime = time.time()
 
 #Loads in the enviroment
 load_dotenv()
@@ -62,7 +66,10 @@ def getChannelID(message):
 @client.command()
 async def status(message):
     ensureSeverExists(message)
-    await message.send('Lab Bot is currently alive on server ' + str(getChannelID(message)) + ' for more status reports, check out osiansmith.com/labbot')
+    aliveTime = (time.time() - startUpTime)
+    await message.send('Lab Bot is currently alive and you are on server # ' + str(getChannelID(message)) + "\n " +
+    "Server  has been alive for " + str(aliveTime) + " seconds\n" + 
+     " for more status reports, check out osiansmith.com/labbot")
 
 #removes space problems
 @client.command()
@@ -82,6 +89,16 @@ async def getHelp(message):
     else: 
         supportList[chanID].append(username)
         await message.send("You have been added to the list - you are number " + str(len(supportList[chanID])) )
+
+
+#No help is needed any more
+client.command()
+async def nohelpneeded(message):
+    noHelpNeeded(message)
+
+client.command()
+async def NoHelpNeeded(message):
+    noHelpNeeded(message)
 
 @client.command()
 async def noHelpNeeded(message):
