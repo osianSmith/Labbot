@@ -1,3 +1,5 @@
+#labbot main.py
+#Copyright Osian Smith 2021. All rights reserved. MIT license.
 from discord import message
 from discord.client import Client
 from discord.ext import commands
@@ -67,7 +69,7 @@ def getChannelID(message):
 async def status(message):
     ensureSeverExists(message)
     aliveTime = (time.time() - startUpTime)
-    await message.send('Lab Bot is currently alive and you are on server # ' + str(getChannelID(message)) + "\n " +
+    await message.send('Labbot BETA is currently alive and you are on server # ' + str(getChannelID(message)) + "\n " +
     "Server  has been alive for " + str(aliveTime) + " seconds\n" + 
      " for more status reports, check out osiansmith.com/labbot")
 
