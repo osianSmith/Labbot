@@ -71,7 +71,7 @@ async def status(message):
     ensureSeverExists(message)
     aliveTime = (time.time() - startUpTime)
     await message.send('Labbot BETA is currently alive and you are on server # ' + str(getChannelID(message)) + "\n " +
-    "Server  has been alive for " + str(aliveTime) + " seconds\n" + 
+    "Server  has been alive for " + str(round(aliveTime)) + " seconds\n" + 
      " for more status reports, check out osiansmith.com/labbot")
 
 #removes space problems
