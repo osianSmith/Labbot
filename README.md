@@ -4,7 +4,7 @@ Labbot is a open source discord bot that has been developed to assist in classes
 
 Labbot is primary desgined for the classroom enviroment, however you are allowed to use it outside the learning enviroment. 
 
-##How to use
+## How to use
 Labbot simply needs to be invived to your discord by a admin, which can be invited [using this link]("https://discord.com/oauth2/authorize?client_id=890279092711219250&permissions=0&scope=bot"). Once accepted, labbot should be in your channel. To test use command `!status` where labbot should give a readout.
 
 
