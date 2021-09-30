@@ -29,6 +29,8 @@ It is recommended as you **as the admin**  also change your role to be included 
 
 
 ## FAQ
+#### Is labbot down?
+To test this, type `!status` into a channel. Labbot is hosted on digital ocean and should be up 99% of the time, however may go down for maintance. This should be outside class times (such as the weekend. Check osiansmith.com/labbot/ for scheduled downtime
 ####  What information is saved?
 I am not saving any information. There are *some* print statements that ai can see in a command line; however, this is more for debugging. 
 
@@ -46,6 +48,7 @@ Great - open a feature request on this GitHub!
 
 #### Who made Labbot?
 Osian Smith makes Labbot.
+
 
 Labbot copyright Osian Smith 2021. All Rights Reserved.
 
