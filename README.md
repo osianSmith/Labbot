@@ -20,11 +20,12 @@ The following commands are available to all users:
 
 - `!status`: This gets the status of the server - no response would suggest that the discord server has gone down  😞
 
-For users with roll `Lab Demonstrator`,  they can:
+For users with an admin rol,  they can: 
 - `!whotohelp` : gets the name of the user who's next in the queue.
 - `!howManyPeopleNeedHelp`: gets the number of people who are waiting in a queue
 - `!flush` : Empties your server queue - should be used at the end of the lab!
 
+An admin role can consist of people with the following roles: `Lab Demonstrator`,`lab demonstrator`, `staff`,`teaching-assistant`,`lecturers` and `admin`
 It is recommended as you **as the admin**  also change your role to be included in the `Lab Demonstrator` group. `Lab Demonstrator` role is **case sensitive!**.
 
 

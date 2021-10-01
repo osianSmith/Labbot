@@ -118,7 +118,7 @@ async def noHelpNeeded(message):
 
 #General Lab demonstrator commands
 @client.command(pass_context=True)
-@commands.has_role("Lab Demonstrator")
+@commands.has_any_role("Lab Demonstrator","lab demonstrator", "staff","teaching-assistant","lecturers","admin", "Admin")
 async def whoToHelp(mesage):
     chanID = getChannelID(message)
     personToHelp = supportList[chanID][0]
@@ -126,13 +126,13 @@ async def whoToHelp(mesage):
     supportList[getChannelID].pop(0)
 
 @client.command(pass_context=True)
-@commands.has_role("Lab Demonstrator")
+@commands.has_any_role("Lab Demonstrator","lab demonstrator", "staff","teaching-assistant","lecturers","admin", "Admin")
 async def howManyPeopleNeedHelp(mesage):
     await message.send("Current waiting list length:" + str(len(supportList[getChannelID])))
 
 #Adminy sort of stuff 
 @client.command(pass_context=True)
-@commands.has_role("Lab Demonstrator")
+@commands.has_any_role("Lab Demonstrator","lab demonstrator", "staff","teaching-assistant","lecturers","admin", "Admin")
 async def flush(message):
     chanID = getChannelID(message)
     await message.send("Flushing Queue")
