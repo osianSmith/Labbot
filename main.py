@@ -31,7 +31,7 @@ knownServerList = [] #this is a array of server lists
 #command 
 
 #Create bot
-client = commands.Bot(command_prefix='!')
+client = commands.Bot(command_prefix='/')
 
 # Startup Information
 @client.event
