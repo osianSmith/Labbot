@@ -1,6 +1,7 @@
 #labbot main.py
 #Copyright Osian Smith 2021. All rights reserved. MIT license.
 
+from logging import fatal
 from discord import message
 from discord.client import Client
 from discord.ext import commands
@@ -11,9 +12,18 @@ from dotenv import load_dotenv
 import time
 
 
+
 load_dotenv() #loads enviroment 
 
 print("Script passed Python init... Starting up and connecting to bot")
+
+#Depreciation notice added
+print("**** DEPRICATION NOTICE ****")
+print("labbot.py relys on discord.py and we have been notified that this is depreciated and *MAY BREAK AT ANY TIME*")
+print("As a result, we now offer Labbot.js which we strongly reccomend you move too and not to use this as your bases for your program")
+
+#IF for what ever reason, you *CANNOT* use js, you can remove the line below, but don't contact me if this breaks due to discord ending support...
+raise Exception("DEPRECIATION NOTICE - look into the source code")
 
 startUpTime = time.time()
 
