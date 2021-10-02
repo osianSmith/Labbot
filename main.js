@@ -1,14 +1,29 @@
+/**
+ * Labbot main.py
+ * Copyright Osian Smith 2021. All Right Reserved. 
+ * MIT license - please read at https://github.com/osianSmith/Labbot
+ */
+
+
+//Required - dotenv 
 require('dotenv').config()
+//gets Enviromental Tokens
 const TOKEN = process.env.TOKEN;
 const GUILD_ID = process.env.GUILD;
 const CLIENT_ID = process.env.CLIENT;
-console.log(TOKEN)
-console.log(GUILD_ID)
-console.log(CLIENT_ID)
+
+//Time to track crash
+const START_UP_TIME = Date.now()
+
+console.log("Script passed JS init - Starting up and connecting to a bot")
+
 
 const { REST } = require('@discordjs/rest');
 const { Routes, GuildDefaultMessageNotifications } = require('discord-api-types/v9');
 
+/**
+ * Announces commands for discord 
+ */
 const commands = [{
     name: 'ping',
     description: 'Replies with Pong!'
@@ -18,6 +33,12 @@ const commands = [{
 }, {
     name: 'whotohelp',
     description: 'Who to help next! (teaching level only)'
+},{
+    name: 'labbotstatus',
+    description: "Gets the status of Labbot"
+}, {
+    name: 'howmanypeopleneedhelp',
+    description : 'returns lenght of queue for this server'
 }];
 
 const rest = new REST({ version: '9' }).setToken(TOKEN);
@@ -37,10 +58,15 @@ const rest = new REST({ version: '9' }).setToken(TOKEN);
     }
 })();
 
-//Queue stuff
+//Queue variables
 var guildList = [];
 var supportList = []
 
+/**
+ * Returns the internal working number for guilds.
+ * @param {the GuildID published by Discord} guildID 
+ * @returns int of internal refrence for guild
+ */
 function GetGuildID(guildID) {
     if (guildList.includes(guildID)) {
         console.log("Gild does exist")
@@ -69,12 +95,12 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
+/**
+ * Handles interaction
+ */
 client.on('interactionCreate', async interaction => {
     //gets the guidID for the 2 d array (x axis)
-    var guildID = GetGuildID(interaction.guild.id);
-
-    console.log("\n\n\n\ supportList: \n" + supportList[guildID]);
-  
+    var guildID = GetGuildID(interaction.guild.id);  
 
     //handle permission
     var hasAdminPrivlages = false;
@@ -92,6 +118,12 @@ client.on('interactionCreate', async interaction => {
     if (interaction.commandName === 'ping') {
 
         await interaction.reply('Pong!');
+    }
+    else if (interaction.commandName === 'labbotstatus') {
+        const aliveTime = Math.floor((Date.now() - START_UP_TIME)/1000);
+        await interaction.reply('Labbot BETA is currently alive and you are on server # ' + guildID + "\n " +
+        "Server  has been alive for " +aliveTime+ " Seconds \n  for more status reports, check out osiansmith.com/labbot");
+
     }
     //gets help 
     else if (interaction.commandName === 'gethelp') {
@@ -118,7 +150,7 @@ client.on('interactionCreate', async interaction => {
     // whotohelp
     else if (interaction.commandName === 'whotohelp') {
         if (!hasAdminPrivlages) {
-            await interaction.reply('You do not have permission');
+            await interaction.reply('You do not have permission for this function');
 
         }
         else {
@@ -134,11 +166,22 @@ client.on('interactionCreate', async interaction => {
         }
     }
 
+    else if (interaction.commandName === 'howmanypeopleneedhelp') {
+        if (!hasAdminPrivlages) {
+            await interaction.reply('You do not have permission for this function');
+
+        }
+        else {
+            await interaction.reply('Current waiting list length: ' + supportList[guildID].length);
+
+        }
+    }
+
 
     //flush list
     else if (interaction.commandName === 'flush') {
         if (!hasAdminPrivlages) {
-            await interaction.reply('You do not have permission');
+            await interaction.reply('You do not have permission for this function');
 
         }
         else {
