@@ -171,7 +171,7 @@ client.on('interactionCreate', async interaction => {
     else if (interaction.commandName === 'labbotstatus') {
         const aliveTime = Math.floor((Date.now() - START_UP_TIME) / 1000);
         await interaction.reply('Labbot BETA is currently alive and you are on server # ' + guildID + "\n " +
-            "Server  has been alive for " + aliveTime + " Seconds \n  for more status reports, check out osiansmith.com/labbot");
+            "Server  has been alive for " + aliveTime + " Seconds \n  for more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.2.2");
 
     }
     //gets help 
@@ -186,7 +186,7 @@ client.on('interactionCreate', async interaction => {
         }
     }
     else if (interaction.commandName === 'nohelpneeded') {
-        const id = supportList.indexOf(username);
+        const id = supportList[guildID].indexOf(username);
         if (id >= 0) {
             console.log("Removing user from the list")
             supportList[guildID].splice(id, 1); //shift does not work here - the reason being is because if it is empty it will deinit the list
