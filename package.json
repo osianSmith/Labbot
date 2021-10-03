@@ -1,0 +1,25 @@
+{
+  "dependencies": {
+    "@discordjs/rest": "^0.1.0-canary.0",
+    "discord-api-types": "^0.23.1",
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0"
+  },
+  "name": "labbot",
+  "description": "**NB - Labbot is in BETA!**",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osianSmith/Labbot.git"
+  },
+  "author": "Osian Smith",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osianSmith/Labbot/issues"
+  },
+  "homepage": "https://github.com/osianSmith/Labbot#readme"
+}
