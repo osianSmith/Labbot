@@ -2,7 +2,7 @@
 **NB - Labbot is in BETA!** 
 
 # Install labbot: 
-Invite yourself here: https://discord.com/oauth2/authorize?client_id=890279092711219250&permissions=0&scope=bot 
+Invite yourself here: https://discord.com/api/oauth2/authorize?client_id=890279092711219250&permissions=0&scope=bot%20applications.commands
 
 # About
 Labbot is an open-source discord bot that has been developed to assist in classes and labs on discord. Labbot is designed to be easy to use for students; labbot can use it over multiple discord servers. 
@@ -17,7 +17,7 @@ Lab bot is triggered with the command `\` icon.  If an incorrect command is ente
 
 We recommended that Labbot is in its own channel in your server, where participants can mute; otherwise, your channels will get disorganised quickly.
 
-##Available commands
+## Available commands
 The following commands are available to all users:
 - `\getHelp`: This adds users to the queue. Users can only be on the list once
 
