@@ -46,6 +46,10 @@ const commands = [{
 {
     name: 'flush',
     description: 'Clears the queue (teaching level only)'
+},
+{
+    name: 'howtouse',
+    description: 'Gives a helpful guide to labbout'
 }];
 
 const rest = new REST({ version: '9' }).setToken(TOKEN);
@@ -144,7 +148,26 @@ client.on('interactionCreate', async interaction => {
     if (interaction.commandName === 'ping') {
 
         await interaction.reply('Pong!');
+    
     }
+    
+    else if (interaction.commandName === 'howtouse') {
+        if (hasAdminPrivlages) {
+            await interaction.reply('\`/gethelp\` to get help \n ' +
+            '\`/nohelpneeded\` to remove yourself from the list \n' +
+            '\`/status\` to gets server status \n' +
+            '\`/ping \`pong \n' +
+            '\`/whotohelp\` to get the indivudal who next to help (person is removed from list) \n' +
+            '\`/flush flushes\` list');
+        }
+        else {
+            await interaction.reply('\`/gethelp\` to get help \n ' +
+            '\`/nohelpneeded\` to remove yourself from the list \n' +
+            '\`/status\` to gets server status \n');
+        }
+    
+    }
+
     else if (interaction.commandName === 'labbotstatus') {
         const aliveTime = Math.floor((Date.now() - START_UP_TIME) / 1000);
         await interaction.reply('Labbot BETA is currently alive and you are on server # ' + guildID + "\n " +
@@ -171,6 +194,7 @@ client.on('interactionCreate', async interaction => {
         await interaction.reply('You have been removed from the list!');
 
     }
+
 
 
     // whotohelp
