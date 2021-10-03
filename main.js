@@ -31,14 +31,21 @@ const commands = [{
     name: 'gethelp',
     description: 'Request help!'
 }, {
+    name: 'nohelpneeded',
+    description: 'Removes you from the list'
+}, {
     name: 'whotohelp',
     description: 'Who to help next! (teaching level only)'
-},{
+}, {
     name: 'labbotstatus',
     description: "Gets the status of Labbot"
 }, {
     name: 'howmanypeopleneedhelp',
-    description : 'returns lenght of queue for this server'
+    description: 'Returns lenght of queue for this server (teaching level only)'
+},
+{
+    name: 'flush',
+    description: 'Clears the queue (teaching level only)'
 }];
 
 const rest = new REST({ version: '9' }).setToken(TOKEN);
@@ -80,14 +87,14 @@ function GetGuildID(guildID) {
         guildList.push(guildID);
         supportList.push([]); //appends new server
         console.log("pushed new server");
-    
+
         //returns location
         console.log(guildID);
         return guildList.indexOf(guildID);
 
     }
 }
-
+// handles discord code
 const { Client, Intents, Message, Guild } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
@@ -96,22 +103,41 @@ client.on('ready', () => {
 });
 
 /**
+ * Checks if the user has admin privlages
+ * @param {The interaction recived from discord} interaction 
+ * @returns true if user is detected with admin privlages, false otherwise
+ */
+function hasTeachingPrivlages(interaction) {
+    const teachingPrilages = ["Lab Demonstrator", "lab demonstrator", "staff", "teaching-assistant", "lecturers", "admin", "Admin"]
+    for (var i = 0; i < teachingPrilages.length; i++) {
+        if (interaction.member.roles.cache.find(r => r.name === teachingPrilages[i])) {
+            return true;
+        }
+
+    }
+    return false; //if does not have any prilvages reurn false
+}
+
+
+/**
  * Handles interaction
  */
 client.on('interactionCreate', async interaction => {
     //gets the guidID for the 2 d array (x axis)
-    var guildID = GetGuildID(interaction.guild.id);  
+    var guildID = GetGuildID(interaction.guild.id);
 
     //handle permission
-    var hasAdminPrivlages = false;
-    if (interaction.member.roles.cache.find(r => r.name === "admin")) {
-        hasAdminPrivlages = true;
+    const hasAdminPrivlages = hasTeachingPrivlages(interaction);
+    //debugging code
+    console.log("Interaction detected. hasRole = " + hasAdminPrivlages + ". guildID = " + guildID + " interaction.commandName = " + interaction.commandName + " guildID; " + guildID);
+
+    //handles interactions below 
+
+    //if not a command don't do anything
+    if (!interaction.isCommand()){ 
+        return;
     }
-
-
-    console.log("hasRole = " + hasAdminPrivlages + ". guildID = " + guildID + " interaction.commandName = " + interaction.commandName  + " guildID; " + guildID);
-    if (!interaction.isCommand()) return;
-    (interaction.commandName);
+    
     //gets username
     var username = (interaction.user.username);
     //test code
@@ -120,9 +146,9 @@ client.on('interactionCreate', async interaction => {
         await interaction.reply('Pong!');
     }
     else if (interaction.commandName === 'labbotstatus') {
-        const aliveTime = Math.floor((Date.now() - START_UP_TIME)/1000);
+        const aliveTime = Math.floor((Date.now() - START_UP_TIME) / 1000);
         await interaction.reply('Labbot BETA is currently alive and you are on server # ' + guildID + "\n " +
-        "Server  has been alive for " +aliveTime+ " Seconds \n  for more status reports, check out osiansmith.com/labbot");
+            "Server  has been alive for " + aliveTime + " Seconds \n  for more status reports, check out osiansmith.com/labbot");
 
     }
     //gets help 
@@ -190,10 +216,6 @@ client.on('interactionCreate', async interaction => {
 
         }
     }
-
-
-
-
 
 
 });
