@@ -23,7 +23,7 @@ The following commands are available to all users:
 
 - `\nohelpneeded`: This is used for students to remove themselves from the list.
 
-- `\status`: This gets the status of the server - no response would suggest that the discord server has gone down  😞
+- `\labbotstatus`: This gets the status of the server - no response would suggest that the discord server has gone down  😞
 - `\ping` : Pong
 
 For users with an admin role,  they can: 
