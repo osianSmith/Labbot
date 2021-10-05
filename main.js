@@ -169,9 +169,9 @@ client.on('interactionCreate', async interaction => {
     }
 
     else if (interaction.commandName === 'labbotstatus') {
-        const aliveTime = Math.floor((Date.now() - START_UP_TIME) / 1000);
+        const aliveTime = (Math.floor((Date.now() - START_UP_TIME) / 1000)/60);
         await interaction.reply('Labbot BETA is currently alive and you are on server # ' + guildID + "\n " +
-            "Server  has been alive for " + aliveTime + " Seconds \n  for more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.2.2");
+            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.2.3 (JS)");
 
     }
     //gets help 
