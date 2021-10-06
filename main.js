@@ -7,6 +7,11 @@
 
 //Required - dotenv 
 require('dotenv').config()
+//gets hash
+var CryptoJS = require("crypto-js");
+
+
+
 //gets Enviromental Tokens
 const TOKEN = process.env.TOKEN;
 const GUILD_ID = process.env.GUILD;
@@ -127,9 +132,18 @@ function hasTeachingPrivlages(interaction) {
  * Handles interaction
  */
 client.on('interactionCreate', async interaction => {
-    //gets the guidID for the 2 d array (x axis)
-    var guildID = GetGuildID(interaction.guild.id);
+    //get guild ID
+    var guild = CryptoJS.MD5(interaction.guild.id);
+    //get channel number
+    var channelID = CryptoJS.MD5(interaction.channel.id);
+    
+    var channelHash = CryptoJS.MD5(guild + channelID);
 
+
+    //gets the guidID for the 2 d array (x axis)
+    console.log("channelHash = " + channelHash);
+    var guildID= GetGuildID(channelHash);
+    console.log(guildID);
     //handle permission
     const hasAdminPrivlages = hasTeachingPrivlages(interaction);
     //debugging code
@@ -171,7 +185,7 @@ client.on('interactionCreate', async interaction => {
     else if (interaction.commandName === 'labbotstatus') {
         const aliveTime = (Math.floor((Date.now() - START_UP_TIME) / 1000)/60);
         await interaction.reply('Labbot BETA is currently alive and you are on server # ' + guildID + "\n " +
-            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.2.3 (JS)");
+            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.3 (JS)");
 
     }
     //gets help 
