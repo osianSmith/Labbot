@@ -142,7 +142,7 @@ client.on('interactionCreate', async interaction => {
 
     //gets the guidID for the 2 d array (x axis)
     console.log("channelHash = " + channelHash);
-    var guildID= GetGuildID(channelHash);
+    var guildID= GetGuildID(interaction.guild.id);
     console.log(guildID);
     //handle permission
     const hasAdminPrivlages = hasTeachingPrivlages(interaction);
