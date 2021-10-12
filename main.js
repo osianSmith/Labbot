@@ -4,6 +4,8 @@
  * MIT license - please read at https://github.com/osianSmith/Labbot
  */
 
+// flag whether script is being debugged or not
+const DEBUG = false;
 
 //Required - dotenv 
 require('dotenv').config()
@@ -62,11 +64,18 @@ const rest = new REST({ version: '9' }).setToken(TOKEN);
 (async () => {
     try {
         console.log('Started refreshing application (/) commands.');
-
+        if (DEBUG) {
+            await rest.put(
+                Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
+                { body: commands },
+          );
+        } else {
+       
         await rest.put(
             Routes.applicationCommands(CLIENT_ID),
             { body: commands },
         );
+        }
 
         console.log('Successfully reloaded application (/) commands.');
     } catch (error) {
@@ -133,21 +142,22 @@ function hasTeachingPrivlages(interaction) {
  */
 client.on('interactionCreate', async interaction => {
     //get guild ID
-    var guild = CryptoJS.MD5(interaction.guild.id);
+    var guild = CryptoJS.MD5(interaction.guild.id).toString();
     //get channel number
-    var channelID = CryptoJS.MD5(interaction.channel.id);
+    var channelID = CryptoJS.MD5(interaction.channel.id).toString();
     
-    var channelHash = CryptoJS.MD5(guild + channelID);
+    var channelHash = CryptoJS.MD5(guild + channelID).toString();
+    console.log("Hash details");
+
 
 
     //gets the guidID for the 2 d array (x axis)
-    console.log("channelHash = " + channelHash);
-    var guildID= GetGuildID(interaction.guild.id);
+    var guildID= GetGuildID(channelHash);
     console.log(guildID);
     //handle permission
     const hasAdminPrivlages = hasTeachingPrivlages(interaction);
     //debugging code
-    console.log("Interaction detected. hasRole = " + hasAdminPrivlages + ". guildID = " + guildID + " interaction.commandName = " + interaction.commandName + " guildID; " + guildID);
+    console.log(" Debug = " + DEBUG + "Interaction detected. hasRole = " + hasAdminPrivlages + ". guildID = " + guildID + " interaction.commandName = " + interaction.commandName + " guildID; " + guildID);
 
     //handles interactions below 
 
@@ -184,8 +194,8 @@ client.on('interactionCreate', async interaction => {
 
     else if (interaction.commandName === 'labbotstatus') {
         const aliveTime = (Math.floor((Date.now() - START_UP_TIME) / 1000)/60);
-        await interaction.reply('Labbot BETA is currently alive and you are on server # ' + guildID + "\n " +
-            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.3 (JS)");
+        await interaction.reply('Labbot BETA is currently alive and you are on channel # ' + guildID + "\n " +
+            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.4 (JS)");
 
     }
     //gets help 
