@@ -5,7 +5,7 @@
  */
 
 // flag whether script is being debugged or not
-const DEBUG = true;
+const DEBUG = false;
 
 //Required - dotenv 
 require('dotenv').config()
@@ -157,7 +157,12 @@ client.on('interactionCreate', async interaction => {
     const hasAdminPrivlages = hasTeachingPrivlages(interaction);
     //debugging code
     console.log(" Debug = " + DEBUG + "Interaction detected. hasRole = " + hasAdminPrivlages + ". guildID = " + guildID + " interaction.commandName = " + interaction.commandName + " guildID; " + guildID);
-
+    //gets username
+    //Gets nickname OR Username. it will defalt to nickname first but if nil will return username
+    const username = interaction.member.nickname || interaction.user.username;
+    
+    
+    
     //handles interactions below 
 
     //if not a command don't do anything
@@ -165,8 +170,7 @@ client.on('interactionCreate', async interaction => {
         return;
     }
     
-    //gets username
-    var username = (interaction.user.username);
+    
     //test code
     if (interaction.commandName === 'ping') {
 
@@ -194,7 +198,7 @@ client.on('interactionCreate', async interaction => {
     else if (interaction.commandName === 'labbotstatus') {
         const aliveTime = (Math.floor((Date.now() - START_UP_TIME) / 1000)/60);
         await interaction.reply('Labbot BETA is currently alive and you are on channel # ' + guildID + "\n " +
-            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.4 (JS)");
+            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.5 (JS)");
 
     }
     //gets help 
@@ -235,7 +239,7 @@ client.on('interactionCreate', async interaction => {
                 else {
                     supportList[guildID] = [];
                 }
-                await interaction.reply('Next in line: ' + whotohelp);
+                await interaction.reply("Next in line: " + whotohelp + '!');
             }
             else {
                 await interaction.reply('Nobody in line');
