@@ -12,18 +12,15 @@ require('dotenv').config()
 //gets hash
 var CryptoJS = require("crypto-js");
 
-
-
 //gets Enviromental Tokens
 const TOKEN = process.env.TOKEN;
-const GUILD_ID = process.env.GUILD;
+const GUILD_ID = process.env.GUILD; //useful for debug 
 const CLIENT_ID = process.env.CLIENT;
 
 //Time to track crash
 const START_UP_TIME = Date.now()
 
 console.log("Script passed JS init - Starting up and connecting to a bot")
-
 
 const { REST } = require('@discordjs/rest');
 const { Routes, GuildDefaultMessageNotifications } = require('discord-api-types/v9');
@@ -81,6 +78,7 @@ const rest = new REST({ version: '9' }).setToken(TOKEN);
     } catch (error) {
         console.error(error);
     }
+    
 })();
 
 //Queue variables
@@ -135,7 +133,6 @@ function hasTeachingPrivlages(interaction) {
     }
     return false; //if does not have any prilvages reurn false
 }
-
 
 /**
  * Handles interaction
@@ -234,7 +231,7 @@ client.on('interactionCreate', async interaction => {
             var whotohelp = supportList[guildID][0];
             if (whotohelp != null) {
                 if (supportList[guildID.length > 1]){
-                supportList[guildID] = supportList[guildID].shift();
+                supportList[guildID].shift();
                 }
                 else {
                     supportList[guildID] = [];
