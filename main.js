@@ -5,7 +5,7 @@
  */
 
 // flag whether script is being debugged or not
-const DEBUG = false;
+const DEBUG = true;
 
 //Required - dotenv 
 require('dotenv').config()
@@ -150,7 +150,6 @@ client.on('interactionCreate', async interaction => {
     console.log("Hash details");
 
 
-
     //gets the guidID for the 2 d array (x axis)
     var guildID= GetGuildID(channelHash);
     console.log(guildID);
@@ -230,7 +229,12 @@ client.on('interactionCreate', async interaction => {
         else {
             var whotohelp = supportList[guildID][0];
             if (whotohelp != null) {
-                supportList[guildID] = supportList[guildID].splice(1, 1);
+                if (supportList[guildID.length > 1]){
+                supportList[guildID] = supportList[guildID].shift();
+                }
+                else {
+                    supportList[guildID] = [];
+                }
                 await interaction.reply('Next in line: ' + whotohelp);
             }
             else {
