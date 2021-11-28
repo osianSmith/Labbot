@@ -32,7 +32,7 @@ For users with an admin role,  they can:
 - `/flush` : Empties your server queue - should be used at the end of the lab!
 
 An admin role can consist of people with the following roles: `Lab Demonstrator`,`lab demonstrator`, `staff`,`teaching-assistant`,`lecturers` and `admin`
-It is recommended as you **as the admin**  also change your role to be included in the `Lab Demonstrator` group. `Lab Demonstrator` role is **case sensitive!**.
+It is recommended as you **as the admin**  also change your role to be included in the `Lab Demonstrator` group. These roles are **case sensitive!**.
 
 
 ## FAQ
