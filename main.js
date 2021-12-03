@@ -145,6 +145,13 @@ client.on('interactionCreate', async interaction => {
     
     var channelHash = CryptoJS.MD5(guild + channelID).toString();
     console.log("Hash details");
+    const aliveTime = Math.floor(((Date.now() - START_UP_TIME/ 1000)/60));
+
+    // check to see if there has been a restart recently.
+    var recentlyRestartMessage = "";
+    if(aliveTime < 120){
+        recentlyRestartMessage = ` Note: Labbot has recently been restarted ${aliveTime} minutes ago. Not all students may be in the list. Sorry!`;
+    }
 
 
     //gets the guidID for the 2 d array (x axis)
@@ -193,9 +200,8 @@ client.on('interactionCreate', async interaction => {
     }
 
     else if (interaction.commandName === 'labbotstatus') {
-        const aliveTime = (Math.floor((Date.now() - START_UP_TIME) / 1000)/60);
         await interaction.reply('Labbot BETA is currently alive and you are on channel # ' + guildID + "\n " +
-            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.5 (JS)");
+            "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.6 (JS)");
 
     }
     //gets help 
@@ -236,10 +242,10 @@ client.on('interactionCreate', async interaction => {
                 else {
                     supportList[guildID] = [];
                 }
-                await interaction.reply("Next in line: " + whotohelp + '!');
+                await interaction.reply("Next in line: " + whotohelp + '!' + recentlyRestartMessage);
             }
             else {
-                await interaction.reply('Nobody in line');
+                await interaction.reply('Nobody in line' + recentlyRestartMessage);
 
             }
         }
@@ -251,7 +257,7 @@ client.on('interactionCreate', async interaction => {
 
         }
         else {
-            await interaction.reply('Current waiting list length: ' + supportList[guildID].length);
+            await interaction.reply('Current waiting list length: ' + supportList[guildID].length) + recentlyRestartMessage;
 
         }
     }
