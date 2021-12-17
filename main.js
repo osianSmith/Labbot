@@ -5,7 +5,7 @@
  */
 
 // flag whether script is being debugged or not
-const DEBUG = false;
+const DEBUG = true;
 
 //Required - dotenv 
 require('dotenv').config()
@@ -18,7 +18,7 @@ const GUILD_ID = process.env.GUILD; //useful for debug
 const CLIENT_ID = process.env.CLIENT;
 
 //Time to track crash
-const START_UP_TIME = Date.now()
+const START_UP_TIME = new Date().getTime();
 
 console.log("Script passed JS init - Starting up and connecting to a bot")
 
@@ -145,7 +145,13 @@ client.on('interactionCreate', async interaction => {
     
     var channelHash = CryptoJS.MD5(guild + channelID).toString();
     console.log("Hash details");
-    const aliveTime = Math.floor(((Date.now() - START_UP_TIME/ 1000)/60));
+    
+    //Gets how long server been on for
+    var now = new Date().getTime(); //gets now
+    const diff =   now - START_UP_TIME; //gets time different in seconds
+
+    //divids diff by 1000 (microseconds), rounds it to 60 and then convernts it to minutes
+    var aliveTime = Math.floor(( diff / 1000 % 60) / 60);
 
     // check to see if there has been a restart recently.
     var recentlyRestartMessage = "";
@@ -200,6 +206,7 @@ client.on('interactionCreate', async interaction => {
     }
 
     else if (interaction.commandName === 'labbotstatus') {
+        var alivemessage = "minutes"
         await interaction.reply('Labbot BETA is currently alive and you are on channel # ' + guildID + "\n " +
             "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on Labbot 0.6 (JS)");
 
