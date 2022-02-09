@@ -6,7 +6,7 @@
 
 // flag whether script is being debugged or not
 const DEBUG = false;
-const VERSION = "Labbot 0.6.1 JS"
+const VERSION = "Labbot 1.0.0"
 
 //Required - dotenv 
 require('dotenv').config()
@@ -208,7 +208,7 @@ client.on('interactionCreate', async interaction => {
 
     else if (interaction.commandName === 'labbotstatus') {
         var alivemessage = "minutes"
-        await interaction.reply('Labbot BETA is currently alive and you are on channel # ' + guildID + "\n " +
+        await interaction.reply('Labbot is currently alive and you are on channel # ' + guildID + "\n " +
             "Server  has been alive for " + aliveTime + " Minutes \n For more status reports, check out osiansmith.com/labbot \n You are on + " + VERSION  + ".");
 
     }
