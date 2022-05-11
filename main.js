@@ -6,7 +6,7 @@
 
 // flag whether script is being debugged or not
 const DEBUG = false;
-const VERSION = "Labbot 1.0.0"
+const VERSION = "Labbot 1.0.1"
 
 //Required - dotenv 
 require('dotenv').config()
@@ -132,7 +132,7 @@ function hasTeachingPrivlages(interaction) {
         }
 
     }
-    return false; //if does not have any prilvages reurn false
+    return false; //if does not have any prilvages return false
 }
 
 /**

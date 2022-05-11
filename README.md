@@ -1,7 +1,6 @@
 # Labbot - a discord bot to help in lab and class environments
-**NB - Labbot is in BETA!** 
 
-# Install labbot: 
+# Using labbot: 
 Invite yourself here: https://discord.com/api/oauth2/authorize?client_id=890279092711219250&permissions=0&scope=bot%20applications.commands
 
 # About
@@ -32,7 +31,7 @@ For users with an admin role,  they can:
 - `/flush` : Empties your server queue - should be used at the end of the lab!
 
 An admin role can consist of people with the following roles: `Lab Demonstrator`,`lab demonstrator`, `staff`,`teaching-assistant`,`lecturers` and `admin`
-It is recommended as you **as the admin**  also change your role to be included in the `Lab Demonstrator` group. These roles are **case sensitive!**.
+It is strongly recommended as the course leader to set yourself **as the admin** and set only people you want to have full power to be able to asign themselves with their own role. These roles are **case sensitive!**.
 
 
 ## FAQ
@@ -46,7 +45,7 @@ I am not saving any information. There are *some* print statements that ai can s
 No. If you want to use a bot for moderation, I recommend [Dyno.gg](https://dyno.gg).  
 
 ####  Is this free?
-Yes
+Yes and open-sourced!
 
 #### What can I do with your code?
 Look at the licence.txt 
