@@ -1,3 +1,11 @@
+#Labot is retired!
+I haven't been in accademia for a few years now and don't personally use this. I don't know if labbot is still used due to lack of analyitcs, but nobody's told me that it's down or any issues with it.  Also I want to change my own servers and don't really want to pay for something that I don't use and I don't think I'll use
+
+
+If I was to rebuild it, I probably would go for more of a web interface and probably extend it to zoom/teams etc but I don't have any use case for it anymore. 
+
+Feel free to take and use/borrow/steal this code and create your own LabBot but for now I'm going to archive this project. 
+
 # Labbot - a discord bot to help in lab and class environments
 
 # Using labbot: 
